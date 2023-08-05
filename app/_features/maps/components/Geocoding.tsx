@@ -17,6 +17,7 @@ import {
   searchRestaurants,
 } from "../api/googleMapsApi";
 import { useCustomContext } from "@/app/_context/context";
+import { fetchRestaurantsData } from "../api/yelpApi";
 
 // This key was created specifically for the demo in mui.com.
 // You need to create a new one for your application.
@@ -123,7 +124,8 @@ const Geocoding = () => {
             lat: lat,
             lng: lng,
           });
-          searchRestaurants(mapRef, setRestaurantsList, lat, lng);
+          // searchRestaurants(mapRef, setRestaurantsList, lat, lng);
+          fetchRestaurantsData(setRestaurantsList, lat, lng);
           fetchWeatherData(setWeatherData, lat, lng);
           setIsFoodBoxOpen(true);
         }

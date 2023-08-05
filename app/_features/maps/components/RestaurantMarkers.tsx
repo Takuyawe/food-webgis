@@ -24,6 +24,8 @@ const MarkersComponent = () => {
 
   console.log(restaurantsList);
 
+  // todo: filter restaurants
+
   return (
     <MarkerClusterer options={options} zoomOnClick>
       {(clusterer) => (
@@ -32,7 +34,7 @@ const MarkersComponent = () => {
             <Marker
               position={getLocation(restaurant)}
               clusterer={clusterer}
-              key={restaurant.place_id}
+              key={restaurant.id}
               //   label={"名古屋城"}
               icon="/restaurant.png"
             />

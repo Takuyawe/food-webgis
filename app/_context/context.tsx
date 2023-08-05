@@ -10,7 +10,7 @@ import {
   MutableRefObject,
 } from "react";
 
-import { Position, WeatherData } from "@/app/_types/index";
+import { Position, WeatherData, RestaurantData } from "@/app/_types/index";
 
 const defaultPosition = {
   lat: 35.182253007459444,
@@ -21,10 +21,10 @@ interface ContextProps {
   mapRef: MutableRefObject<google.maps.Map | null>;
   currentPosition: Position;
   setCurrentPosition: (position: Position) => void;
-  restaurantsList: google.maps.places.PlaceResult[];
+  restaurantsList: RestaurantData;
+  setRestaurantsList: (restaurants: RestaurantData) => void;
   targetedPlace: google.maps.places.PlaceResult;
   setTargetedPlace: (place: google.maps.places.PlaceResult) => void;
-  setRestaurantsList: (restaurants: google.maps.places.PlaceResult[]) => void;
   weatherData: WeatherData;
   setWeatherData: (data: WeatherData) => void;
   isFoodBoxOpen: boolean;
@@ -39,10 +39,8 @@ export const ContextProvider: React.FC<{ children: ReactNode }> = ({
   const mapRef = useRef<google.maps.Map | null>(null);
   const [currentPosition, setCurrentPosition] = useState(defaultPosition);
   const [targetedPlace, setTargetedPlace] = useState<any>(null); // google.maps.places.PlaceResult[
-  const [restaurantsList, setRestaurantsList] = useState<
-    google.maps.places.PlaceResult[]
-  >([]);
-  const [weatherData, setWeatherData] = useState<any>(null);
+  const [restaurantsList, setRestaurantsList] = useState<RestaurantData>([]);
+  const [weatherData, setWeatherData] = useState<WeatherData>([]);
   const [isFoodBoxOpen, setIsFoodBoxOpen] = useState(false);
 
   return (

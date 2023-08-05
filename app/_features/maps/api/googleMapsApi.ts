@@ -11,7 +11,7 @@ export const searchRestaurants = async (
 
   const request = {
     location: new google.maps.LatLng(lat, lng),
-    radius: 5000, // Search within a 500 meter radius
+    radius: 5000, // Search within a 5000 meter radius
     type: "restaurant", // Look for places of type 'restaurant'
     language: "en", // English language results
     minPrice: minPrice,
