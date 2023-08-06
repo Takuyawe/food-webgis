@@ -25,6 +25,7 @@ export type Restaurant = {
   id: string;
   coordinates: Position;
   displayPhone: string;
+  displayAddress: string;
   distance: number;
   image: string;
   categories: CuisineType[];

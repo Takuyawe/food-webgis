@@ -9,14 +9,21 @@ import {
 import { useState } from "react";
 import { useCustomContext } from "@/app/_context/context";
 import RestaurantMarkers from "./RestaurantMarkers";
+import TargetLocationMarker from "./TargetLocationMarker";
+import Direction from "./Direction";
 
 const container = {
   width: "100%",
   height: "100vh",
 };
 
+const defaultCenter = {
+  lat: 37.7749295,
+  lng: -122.4194155,
+};
+
 const MapComponent = () => {
-  const { mapRef, currentPosition } = useCustomContext();
+  const { mapRef, directionMode } = useCustomContext();
   const [libraries] = useState<Libraries>(["places"]);
 
   const { isLoaded, loadError } = useLoadScript({
@@ -30,7 +37,7 @@ const MapComponent = () => {
         <div>
           <GoogleMap
             mapContainerStyle={container}
-            center={currentPosition}
+            center={defaultCenter}
             zoom={15}
             options={{
               disableDefaultUI: true,
@@ -43,8 +50,9 @@ const MapComponent = () => {
             }}
           >
             <RestaurantMarkers />
+            <TargetLocationMarker />
+            {directionMode && <Direction />}
           </GoogleMap>
-          {/* todo: ondrag and update current location */}
         </div>
       ) : (
         <div></div>

@@ -10,6 +10,8 @@ const FoodMenuComponent = () => {
 
   console.log(targetedPlace);
 
+  if (!targetedPlace) return null;
+
   const photoUrl = targetedPlace.photos ? targetedPlace.photos[0].getUrl() : "";
 
   return (
@@ -34,12 +36,12 @@ const FoodMenuComponent = () => {
         <WeatherBox />
       </Box>
 
-      <Box position="relative" height="30%" width="100%">
+      <Box position="relative" height="25%" width="100%">
         <FilterComponent />
       </Box>
       <Box
         position="relative"
-        height="40%"
+        height="55%"
         width="100%"
         sx={{
           overflowY: "auto", // This will make the Box scrollable vertically

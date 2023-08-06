@@ -20,7 +20,7 @@ const foodCategoryList = [
 
 const PriceList = ["$", "$$", "$$$", "$$$$"];
 
-const DistanceList = ["~1km", "~5km", "~10km", "~25km"];
+// const DistanceList = ["~1km", "~5km", "~10km", "~25km"];
 
 const FilterComponent = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("");
@@ -58,7 +58,7 @@ const FilterComponent = () => {
         </div>
       </div>
       <Divider className="border-b-2 my-2" />
-      <div className="relative h-1/5 w-full">
+      {/* <div className="relative h-1/5 w-full">
         <div className="flex justify-around items-center mx-8">
           {DistanceList.map((Distance) => (
             <Button
@@ -70,7 +70,7 @@ const FilterComponent = () => {
             </Button>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -42,11 +42,11 @@ interface PlaceType {
 const Geocoding = () => {
   const {
     mapRef,
-    setCurrentPosition,
     setTargetedPlace,
     setRestaurantsList,
     setWeatherData,
     setIsFoodBoxOpen,
+    setShowSearchButton,
   } = useCustomContext();
   const [value, setValue] = useState<PlaceType | null>(null);
   const [inputValue, setInputValue] = useState("");
@@ -120,14 +120,13 @@ const Geocoding = () => {
 
         if (location) {
           const { lat, lng } = location;
-          setCurrentPosition({
-            lat: lat,
-            lng: lng,
-          });
+          mapRef.current?.setCenter({ lat, lng });
+
           // searchRestaurants(mapRef, setRestaurantsList, lat, lng);
           fetchRestaurantsData(setRestaurantsList, lat, lng);
           fetchWeatherData(setWeatherData, lat, lng);
           setIsFoodBoxOpen(true);
+          setShowSearchButton(true);
         }
       }
     }
