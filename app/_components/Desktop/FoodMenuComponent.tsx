@@ -22,7 +22,7 @@ const FoodMenuComponent = () => {
       display="flex"
       flexDirection="column"
     >
-      <Box position="relative" height="8.9%" width="100%">
+      <Box position="relative" height="9.3%" width="100%">
         {photoUrl && (
           <Image
             src={photoUrl || "/restaurant.png"}
