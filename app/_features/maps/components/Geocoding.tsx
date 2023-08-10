@@ -188,7 +188,7 @@ const Geocoding = () => {
               >
                 {parts.map((part, index) => (
                   <Box
-                    key={index}
+                    key={`${part.text}-${index}`}
                     component="span"
                     sx={{ fontWeight: part.highlight ? "bold" : "regular" }}
                   >

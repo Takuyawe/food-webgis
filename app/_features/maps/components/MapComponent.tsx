@@ -24,7 +24,7 @@ const defaultCenter = {
 
 const MapComponent = () => {
   const { mapRef, directionMode } = useCustomContext();
-  const [libraries] = useState<Libraries>(["places"]);
+  const [libraries] = useState<Libraries>(["places", "geometry"]);
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: `${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`,

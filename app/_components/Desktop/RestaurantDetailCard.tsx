@@ -12,10 +12,17 @@ import {
   getRating,
 } from "@/app/_features/maps/utils/restaurnatCard";
 import { getStars } from "@/app/_features/maps/utils/getStars";
+import { getDirection } from "@/app/_features/maps/api/hereApi";
+import { Position } from "@/app/_types";
 
 const RestaurantDetailCard = () => {
-  const { targetedRestaurant, setIsDetailBoxOpen, setDirectionMode } =
-    useCustomContext();
+  const {
+    mapRef,
+    targetedPlace,
+    targetedRestaurant,
+    setIsDetailBoxOpen,
+    setDirectionMode,
+  } = useCustomContext();
 
   if (!targetedRestaurant) return null;
 
@@ -28,6 +35,12 @@ const RestaurantDetailCard = () => {
     setIsDetailBoxOpen(false);
   };
 
+  //   const handleDirectionClick = () => {
+  //     const origin = targetedPlace?.geometry?.location?.toJSON() as Position;
+  //     const destination = targetedRestaurant.coordinates;
+  //     getDirection(mapRef, origin, destination);
+  //   };
+
   return (
     <Box
       bgcolor="#ffffff"
@@ -39,7 +52,7 @@ const RestaurantDetailCard = () => {
     >
       <div className="relative h-1/3 rounded-t-3xl overflow-hidden">
         <Image
-          src={targetedRestaurant.image || "/image_not_available"}
+          src={targetedRestaurant.image || "/image_not_available.png"}
           alt={targetedRestaurant.name || "Restaurnat Image"}
           fill
           style={{ objectFit: "cover" }}
