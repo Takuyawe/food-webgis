@@ -138,7 +138,7 @@ const Geocoding = () => {
   return (
     <Autocomplete
       id="google-map-geocoding"
-      className="w-96 bg-white"
+      className="w-96 bg-white mx-auto"
       getOptionLabel={(option) =>
         typeof option === "string" ? option : option.description
       }

@@ -2,7 +2,7 @@ import { useCustomContext } from "@/app/_context/context";
 import { Box, Grid } from "@mui/material";
 import Image from "next/image";
 import RestaurantCards from "./RestaurantCards";
-import WeatherBox from "./WeatherBox";
+import WeatherBox from "../../_features/maps/components/WeatherBox";
 import FilterComponent from "./FilterComponent";
 
 const FoodMenuComponent = () => {
