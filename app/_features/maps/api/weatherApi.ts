@@ -6,6 +6,7 @@ export const fetchWeatherData = async (
   lng?: number,
 ) => {
   try {
+    console.log(process.env.NEXT_PUBLIC_BACKEND_URL);
     const response = await axios.get(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/weather/${lat},${lng}`,
     );
