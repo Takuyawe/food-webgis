@@ -4,7 +4,7 @@ import { Typography } from "@mui/material";
 
 const LoadingComponent = () => {
   return (
-    <div className="flex justify-center items-center mt-8">
+    <div className="flex justify-center items-center pt-8">
       <MagnifyingGlass
         visible={true}
         height="80"

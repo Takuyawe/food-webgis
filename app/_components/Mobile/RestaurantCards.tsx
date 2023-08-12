@@ -199,7 +199,9 @@ const RestaurantCards = () => {
           ))}
         </div>
       ) : (
-        <LoadingComponent />
+        <div className="h-5/6 bg-white">
+          <LoadingComponent />
+        </div>
       )}
     </div>
   );

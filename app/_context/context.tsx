@@ -52,7 +52,7 @@ export const ContextProvider: React.FC<{ children: ReactNode }> = ({
     useState<google.maps.places.PlaceResult | null>(null); // google.maps.places.PlaceResult[
   const [restaurantsList, setRestaurantsList] = useState<RestaurantData>([]);
   const [weatherData, setWeatherData] = useState<WeatherData>([]);
-  const [isFoodBoxOpen, setIsFoodBoxOpen] = useState(false);
+  const [isFoodBoxOpen, setIsFoodBoxOpen] = useState(true);
   const [targetedRestaurant, setTargetedRestaurant] =
     useState<Restaurant | null>(null);
   const [isDetailBoxOpen, setIsDetailBoxOpen] = useState(false);

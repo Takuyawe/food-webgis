@@ -1,4 +1,5 @@
 import { useCustomContext } from "@/app/_context/context";
+import { useMediaQuery } from "react-responsive";
 import { Marker, MarkerClusterer } from "@react-google-maps/api";
 import { Fragment } from "react";
 import { Restaurant } from "@/app/_types";
@@ -9,7 +10,16 @@ const options = {
   maxZoom: 15,
 };
 
-const adjustCoordinates = (coordinates: Position) => {
+const mobileAdjustCoordinates = (coordinates: Position) => {
+  const adjustedLat = coordinates.lat - 0.00001;
+  const adjustedLng = coordinates.lng - 0.0008;
+  return {
+    lat: adjustedLat,
+    lng: adjustedLng,
+  };
+};
+
+const desktopAdjustCoordinates = (coordinates: Position) => {
   const adjustedLat = coordinates.lat - 0.0005;
   const adjustedLng = coordinates.lng - 0.0015;
   return {
@@ -27,6 +37,8 @@ const MarkersComponent = () => {
     setDirectionMode,
   } = useCustomContext();
 
+  const isSmallScreen = useMediaQuery({ query: "(max-width: 768px)" });
+
   console.log(restaurantsList);
 
   console.log("map", mapRef.current);
@@ -36,7 +48,11 @@ const MarkersComponent = () => {
       setDirectionMode(false);
       setTargetedRestaurant(restaurant);
       mapRef.current?.setZoom(18);
-      mapRef.current?.setCenter(adjustCoordinates(restaurant.coordinates));
+      mapRef.current?.setCenter(
+        isSmallScreen
+          ? mobileAdjustCoordinates(restaurant.coordinates)
+          : desktopAdjustCoordinates(restaurant.coordinates),
+      );
       setIsDetailBoxOpen(true);
     };
   };
