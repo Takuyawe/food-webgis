@@ -6,11 +6,14 @@ import MapComponent from "../_features/maps/components/MapComponent";
 import RestaurantDetailCard from "./Mobile/RestaurantDetailCard";
 import BottomMenuBar from "./Mobile/BottomMenuBar";
 import RestaurantCards from "./Mobile/RestaurantCards";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import WeatherBox from "../_features/maps/components/WeatherBox";
+import FilterComponent from "./Mobile/FilterComponent";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
+import FilterListIcon from "@mui/icons-material/FilterList";
 import { IconButton } from "@mui/material";
-import Draggable from "react-draggable";
+import Draggable, { DraggableData, DraggableEvent } from "react-draggable";
+import SlideMenu from "./Mobile/SlideMenu";
 
 const MobileComponent = () => {
   const { isFoodBoxOpen, isDetailBoxOpen } = useCustomContext();
@@ -21,18 +24,10 @@ const MobileComponent = () => {
         <MapComponent />
       </div>
       {isFoodBoxOpen && (
-        <Draggable axis="x" bounds={{ left: 0, right: window.innerWidth - 45 }}>
-          <div className="absolute top-20 left-0 h-36 w-full flex">
-            <div className="relative top-0 h-1/3 w-12 bg-white flex justify-center items-center rounded-r-full">
-              <IconButton>
-                <WbSunnyIcon className="text-gray-700" />
-              </IconButton>
-            </div>
-            <div className="relative top-0 -left-full h-full w-full bg-white">
-              <WeatherBox />
-            </div>
-          </div>
-        </Draggable>
+        <Fragment>
+          <SlideMenu component="weather" />
+          <SlideMenu component="filter" />
+        </Fragment>
       )}
       {isDetailBoxOpen && (
         <Fragment>
