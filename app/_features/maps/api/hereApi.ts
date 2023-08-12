@@ -11,12 +11,15 @@ export const getDirection = async (
   const destinationString = `${destination.lat},${destination.lng}`;
 
   try {
-    const response = await axios.get("http://localhost:5001/direction", {
-      params: {
-        origin: originString,
-        destination: destinationString,
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/direction`,
+      {
+        params: {
+          origin: originString,
+          destination: destinationString,
+        },
       },
-    });
+    );
     console.log(response.data);
     if (response.data.routes.length === 0) throw new Error();
     const polylineData = response.data.routes[0].sections[0].polyline;

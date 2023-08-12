@@ -7,7 +7,7 @@ export const fetchWeatherData = async (
 ) => {
   try {
     const response = await axios.get(
-      `http://localhost:5001/weather/${lat},${lng}`,
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/weather/${lat},${lng}`,
     );
     const data = response.data;
     console.log(data);

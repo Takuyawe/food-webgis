@@ -29,7 +29,7 @@ export const fetchRestaurantsData = async (
 ) => {
   try {
     const response = await axios.get(
-      `http://localhost:5001/restaurants/${lat},${lng}`,
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/restaurants/${lat},${lng}`,
     );
     const data = response.data;
     console.log(data);
