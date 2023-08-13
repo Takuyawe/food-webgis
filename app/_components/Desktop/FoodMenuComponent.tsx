@@ -14,6 +14,8 @@ const FoodMenuComponent = () => {
 
   const photoUrl = targetedPlace.photos ? targetedPlace.photos[0].getUrl() : "";
 
+  console.log("image", photoUrl);
+
   return (
     <Box
       bgcolor="#ffffff"
