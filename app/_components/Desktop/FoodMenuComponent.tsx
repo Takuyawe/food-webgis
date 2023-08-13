@@ -23,14 +23,12 @@ const FoodMenuComponent = () => {
       flexDirection="column"
     >
       <Box position="relative" height="9.3%" width="100%">
-        {photoUrl && (
-          <Image
-            src={photoUrl || "/restaurant.png"}
-            alt={targetedPlace.name || "Place image"}
-            fill
-            style={{ objectFit: "cover" }}
-          />
-        )}
+        <Image
+          src={photoUrl || "/image_not_available.png"}
+          alt={targetedPlace.name || "Place image"}
+          fill
+          style={{ objectFit: "cover" }}
+        />
       </Box>
       <Box position="relative" height="15%" width="100%">
         <WeatherBox />
