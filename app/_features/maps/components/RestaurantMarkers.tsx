@@ -39,10 +39,6 @@ const MarkersComponent = () => {
 
   const isSmallScreen = useMediaQuery({ query: "(max-width: 768px)" });
 
-  console.log(restaurantsList);
-
-  console.log("map", mapRef.current);
-
   const handleClick = (restaurant: Restaurant) => {
     return () => {
       setDirectionMode(false);
@@ -69,7 +65,7 @@ const MarkersComponent = () => {
               clusterer={clusterer}
               key={restaurant.id}
               //   label={"名古屋城"}
-              icon="/restaurant.svg"
+              icon="/restaurant.png"
               // animation={google.maps.Animation.BOUNCE}
               onClick={handleClick(restaurant)}
             />
