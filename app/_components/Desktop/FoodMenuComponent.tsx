@@ -12,9 +12,9 @@ const FoodMenuComponent = () => {
 
   if (!targetedPlace) return null;
 
-  const photoUrl = targetedPlace.photos ? targetedPlace.photos[0].getUrl() : "";
-
-  console.log("image", photoUrl);
+  const photoUrl = targetedPlace.photos
+    ? targetedPlace.photos[0].getUrl()
+    : "/image_not_available.png";
 
   return (
     <Box
@@ -26,7 +26,7 @@ const FoodMenuComponent = () => {
     >
       <Box position="relative" height="9.3%" width="100%">
         <Image
-          src={photoUrl || "/image_not_available.png"}
+          src={photoUrl}
           alt={targetedPlace.name || "Place image"}
           fill
           style={{ objectFit: "cover" }}
