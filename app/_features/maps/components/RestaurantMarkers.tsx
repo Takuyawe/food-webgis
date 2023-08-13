@@ -69,7 +69,7 @@ const MarkersComponent = () => {
               clusterer={clusterer}
               key={restaurant.id}
               //   label={"名古屋城"}
-              icon="/restaurant.png"
+              icon="/restaurant.svg"
               // animation={google.maps.Animation.BOUNCE}
               onClick={handleClick(restaurant)}
             />
