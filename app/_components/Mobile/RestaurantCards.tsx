@@ -3,6 +3,9 @@ import { getStars } from "@/app/_features/maps/utils/getStars";
 import { Suspense } from "react";
 import LoadingComponent from "@/app/_features/maps/utils/LoadingComponent";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css/bundle";
+
 import {
   Box,
   Grid,
@@ -113,91 +116,97 @@ const RestaurantCards = () => {
         </Toolbar>
       </AppBar>
       {restaurantsList.length !== 0 ? (
-        <div className="flex h-5/6 w-full">
-          {sortedRestaurants.map((restaurant) => (
-            <div
-              className="relative min-w-[70%] bg-white hover:bg-gray-100 border border-gray-400 shadow-md"
-              key={`${restaurant.name}-card`}
-            >
-              <Grid container>
-                <Grid item xs={7} className="ml-2 mt-3">
-                  <Box display="flex" flexDirection="column">
-                    <Typography variant="body1" color="black">
-                      {restaurant.name}
-                    </Typography>
-                    {/* todo: button to display on the map */}
-                    <div className="flex">
-                      {restaurant.categories.map((category, i) => (
+        <Swiper
+          spaceBetween={10} // Space between cards
+          slidesPerView={"auto"} // Number of slides per view
+          freeMode={true} // Free mode for non-fixed positions
+        >
+          <div className="flex h-5/6 w-full">
+            {sortedRestaurants.map((restaurant) => (
+              <div
+                className="relative min-w-[70%] bg-white hover:bg-gray-100 border border-gray-400 shadow-md"
+                key={`${restaurant.name}-card`}
+              >
+                <Grid container>
+                  <Grid item xs={7} className="ml-2 mt-3">
+                    <Box display="flex" flexDirection="column">
+                      <Typography variant="body1" color="black">
+                        {restaurant.name}
+                      </Typography>
+                      {/* todo: button to display on the map */}
+                      <div className="flex">
+                        {restaurant.categories.map((category, i) => (
+                          <Typography
+                            variant="body2"
+                            className="text-gray-700"
+                            key={`${category.alias}-${i}`}
+                          >
+                            #{category.title} &nbsp;
+                          </Typography>
+                        ))}
+                      </div>
+                      <Box display="flex">
                         <Typography
+                          className="text-gray-600 mt-1 mr-1"
                           variant="body2"
-                          className="text-gray-700"
-                          key={`${category.alias}-${i}`}
+                          color="gray"
                         >
-                          #{category.title} &nbsp;
+                          {getRating(restaurant.rating)}
                         </Typography>
-                      ))}
-                    </div>
-                    <Box display="flex">
-                      <Typography
-                        className="text-gray-600 mt-1 mr-1"
-                        variant="body2"
-                        color="gray"
-                      >
-                        {getRating(restaurant.rating)}
+                        <div>{getStars(restaurant.rating)}</div>
+                        <Typography
+                          className="text-gray-600 mt-1 ml-1"
+                          variant="body2"
+                        >
+                          ({restaurant.reviewCount})
+                        </Typography>
+                      </Box>
+                      <Typography variant="body2" color="gray">
+                        Price Level: {getPriceLevel(restaurant.priceLevel)}
                       </Typography>
-                      <div>{getStars(restaurant.rating)}</div>
-                      <Typography
-                        className="text-gray-600 mt-1 ml-1"
-                        variant="body2"
-                      >
-                        ({restaurant.reviewCount})
+                      <div className="flex">
+                        <Typography className="text-gray-700" variant="body1">
+                          Opening Status: &nbsp;
+                        </Typography>
+                        <Typography
+                          variant="subtitle2"
+                          color={getOpenStatusColor(
+                            getIsOpen(restaurant.isClosed),
+                          )}
+                        >
+                          {getIsOpen(restaurant.isClosed)}
+                        </Typography>
+                      </div>
+                      <Typography variant="body2" className="text-gray-700">
+                        {restaurant.displayPhone}
                       </Typography>
+                      <div>
+                        <a
+                          href={restaurant.url}
+                          className="text-blue-600 hover:text-blue-400 text-sm"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Restaurant URL
+                        </a>
+                      </div>
                     </Box>
-                    <Typography variant="body2" color="gray">
-                      Price Level: {getPriceLevel(restaurant.priceLevel)}
-                    </Typography>
-                    <div className="flex">
-                      <Typography className="text-gray-700" variant="body1">
-                        Opening Status: &nbsp;
-                      </Typography>
-                      <Typography
-                        variant="subtitle2"
-                        color={getOpenStatusColor(
-                          getIsOpen(restaurant.isClosed),
-                        )}
-                      >
-                        {getIsOpen(restaurant.isClosed)}
-                      </Typography>
+                  </Grid>
+                  <Grid item xs={4} className="mt-4 ml-4">
+                    <div className="relative h-16 w-16 rounded-lg overflow-hidden">
+                      <Image
+                        src={restaurant.image || "/image_not_available.png"}
+                        alt={restaurant.name || "Restaurant Image"}
+                        fill
+                        style={{ objectFit: "cover" }}
+                      />
                     </div>
-                    <Typography variant="body2" className="text-gray-700">
-                      {restaurant.displayPhone}
-                    </Typography>
-                    <div>
-                      <a
-                        href={restaurant.url}
-                        className="text-blue-600 hover:text-blue-400 text-sm"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Restaurant URL
-                      </a>
-                    </div>
-                  </Box>
+                  </Grid>
                 </Grid>
-                <Grid item xs={4} className="mt-4 ml-4">
-                  <div className="relative h-16 w-16 rounded-lg overflow-hidden">
-                    <Image
-                      src={restaurant.image || "/image_not_available.png"}
-                      alt={restaurant.name || "Restaurant Image"}
-                      fill
-                      style={{ objectFit: "cover" }}
-                    />
-                  </div>
-                </Grid>
-              </Grid>
-            </div>
-          ))}
-        </div>
+              </div>
+            ))}
+          </div>
+        </Swiper>
       ) : (
         <div className="h-5/6 bg-white">
           <LoadingComponent />
