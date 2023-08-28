@@ -117,7 +117,6 @@ const RestaurantCards = () => {
       </AppBar>
       {restaurantsList.length !== 0 ? (
         <Swiper
-          spaceBetween={10} // Space between cards
           slidesPerView={"auto"} // Number of slides per view
           freeMode={true} // Free mode for non-fixed positions
         >
